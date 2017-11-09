@@ -69,7 +69,7 @@ class Book(models.Model):
     subcategory = models.ForeignKey(SubCategory)
     title = models.CharField(max_length=500, help_text="Enter Book Title")
     description = models.TextField(help_text="Enter Book Description")
-    cover_photo = models.ImageField()
+    # cover_photo = models.ImageField()
     author = models.CharField(max_length=255)
     published = models.BooleanField(default=True)
     published_by = models.CharField(max_length=255, help_text="Enter Book publisher name", null=True, blank=True)
