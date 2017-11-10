@@ -1,0 +1,28 @@
+{% extends "book_store/app_base.html" %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+  <h1>Books List View</h1>
+  <div class="row">
+    {% if book_list %}
+    {% for book in book_list %}
+    <div class="col-sm-3">
+    <a href="/book-detail/{{book.subcategory.pk}}/{{book.pk}}/"><img src="{{book.cover_photo.url}}" alt="book-image" width="100%" height="100%" />
+    </a><br>
+    <span>Title:{{book.title}}</span><br/>
+    <span>Author:{{book.author}}</span><br/>
+    
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="col-sm-3">
+    <span>No Results Found</span>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
