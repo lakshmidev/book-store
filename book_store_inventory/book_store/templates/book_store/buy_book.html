@@ -1,0 +1,51 @@
+{% extends "book_store/app_base.html" %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+  <h1>Book Subscription View</h1>
+  {% if book %}
+    <div class="row">
+      <div class="col-sm-6">
+        <a><img src="{{book.cover_photo.url}}" alt="book-image" width="50%" height="50%" />
+        </a>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Title:{{book.title}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Author:{{book.author}}</span>
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-sm-6">
+        <span>Price:{{book.price}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+      <form action="." method="post">
+        {% csrf_token %}
+        <label>Quantity</label>
+        <input type="number" name="quantity" required="true" />
+        <input type="hidden" name="book_price" value="{{book.price}}" />
+        <button class="btn btn-primary" type="submit">Pay Now</button>
+      </form>
+       
+      </div>
+    </div>
+    {% else %}
+     <div class="row">
+      <div>
+        <span>Book Details are not found</span> 
+      </div>
+    </div>
+     {% endif %}         
+  </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "book_store/app_base.html" %}
+
+
+{% block header %}
+   
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+  <h1>Books Detailed View</h1>
+  {% if book %}
+    <div class="row">
+      <div class="col-sm-6">
+        <a><img src="{{book.cover_photo.url}}" alt="book-image" width="50%" height="50%" />
+        </a>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Title:{{book.title}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Author:{{book.author}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Publisher:{{book.published_by}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Published On:{{book.published_at}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Price:{{book.price}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span>Descritption:</span><br/>
+        <p>{{book.description}}</p>
+ 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">
+        <a href="/buy-book/{{book.subcategory.id}}/{{book.id}}/">
+        <button class="btn btn-primary">Buy NOW</button>
+        </a>
+
+      </div>
+      <div class="col-sm-3">
+        <a href="/">
+        <button class="btn btn-primary">Back</button>
+        </a>
+      </div>
+
+    </div>
+     {% else %}
+     <div class="row">
+      <div>
+        <span>Book Details are not found</span> 
+      </div>
+    </div>
+
+     {% endif %}   
+      
+  </div>
+
+{% endblock %}
