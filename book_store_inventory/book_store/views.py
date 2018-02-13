@@ -16,15 +16,18 @@ def list_books(request, *args, **kwargs):
     """
     category_list, subcategory_dict = get_categories()
     context_data = {}
-    context_data['category_list'] = category_list
-    context_data['subcategory_dict'] = subcategory_dict
-    book_list = []
-    if kwargs.get('subcategory_id'):
-        sub_id = kwargs.get('subcategory_id')
-        book_list = Book.objects.filter(subcategory__id=sub_id)
-    else:
-        book_list = Book.objects.all()    
-    context_data['book_list'] = book_list
+    try:
+        context_data['category_list'] = category_list
+        context_data['subcategory_dict'] = subcategory_dict
+        book_list = []
+        if kwargs.get('subcategory_id'):
+            sub_id = kwargs.get('subcategory_id')
+            book_list = Book.objects.filter(subcategory__id=sub_id)
+        else:
+            book_list = Book.objects.all()    
+        context_data['book_list'] = book_list
+    except Exception as e:
+        print "************888", e
     return render(request, 'book_store/book_list.html', context=context_data)
 
 @login_required
